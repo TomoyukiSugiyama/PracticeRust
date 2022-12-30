@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-api
+spec:
+  selector:
+    matchLabels:
+      app: test-api
+  replicas: {{ .Values.replicas }}
+  template:
+    metadata:
+      labels:
+        app: test-api
+    spec:
+      containers:
+      - name: test-api
+        image: {{ .Values.image }}
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        resources:
+        env:
+          - name: SPRING_DATASOURCE_URL
+            value: jdbc:mysql://test-db-service:3306/okr?autoReconnect=true&useSSL=false
+        ports:
+        - containerPort: 8080

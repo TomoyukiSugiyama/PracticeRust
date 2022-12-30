@@ -1,0 +1,12 @@
+apiVersion: skaffold/v4beta1
+kind: Config
+metadata:
+  name: practicerust
+deploy:
+  helm:
+    releases:
+    - name: test-api
+      chartPath: helm
+      valuesFiles:
+      - helm/values.yaml
+      version: 1.0.0
