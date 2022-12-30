@@ -2,6 +2,12 @@ apiVersion: skaffold/v4beta1
 kind: Config
 metadata:
   name: practicerust
+build:
+  artifacts:
+    - image: test-api
+      context: .
+      docker:
+        dockerfile: app/Dockerfile
 deploy:
   helm:
     releases:

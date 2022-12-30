@@ -1,7 +1,7 @@
 FROM rust:1.31
 
 WORKDIR /usr/src/test-api
-COPY ./src .
+COPY . .
 
 RUN cargo install --path .
 
