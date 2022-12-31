@@ -16,3 +16,5 @@ deploy:
       valuesFiles:
       - helm/values.yaml
       version: 1.0.0
+      setValues: 
+        image: test-api
