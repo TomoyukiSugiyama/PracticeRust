@@ -11,6 +11,10 @@ build:
       context: .
       docker:
         dockerfile: app/Dockerfile
+    - image: test-web
+      context: .
+      docker:
+        dockerfile: web/Dockerfile
 deploy:
   helm:
     releases:
