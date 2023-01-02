@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-web
+spec:
+  selector:
+    matchLabels:
+      app: test-web
+  replicas: {{ .Values.replicas }}
+  template:
+    metadata:
+      labels:
+        app: test-web
+    spec:
+      containers:
+      - name: test-web
+        image: {{ .Values.image }}
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        resources:
+        ports:
+        - containerPort: 80
