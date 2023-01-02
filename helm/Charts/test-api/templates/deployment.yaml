@@ -18,7 +18,7 @@ spec:
         imagePullPolicy: {{ .Values.imagePullPolicy }}
         resources:
         env:
-          - name: SPRING_DATASOURCE_URL
+          - name: DATASOURCE_URL
             value: jdbc:mysql://test-db-service:3306/okr?autoReconnect=true&useSSL=false
         ports:
         - containerPort: 8080
