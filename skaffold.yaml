@@ -21,7 +21,7 @@ deploy:
     - name: test-api
       chartPath: helm
       valuesFiles:
-      - helm/values.yaml
+      - helm/Charts/test-api/values.yaml
       version: 1.0.0
       setValues: 
         image: test-api
