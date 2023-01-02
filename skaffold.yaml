@@ -25,3 +25,10 @@ deploy:
       version: 1.0.0
       setValues: 
         image: test-api
+    - name: test-web
+      chartPath: helm/Charts/test-web
+      valuesFiles:
+      - helm/Charts/test-web/values.yaml
+      version: 1.0.0
+      setValues: 
+        image: test-web
