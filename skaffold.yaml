@@ -19,7 +19,7 @@ deploy:
   helm:
     releases:
     - name: test-api
-      chartPath: helm
+      chartPath: helm/Charts/test-api
       valuesFiles:
       - helm/Charts/test-api/values.yaml
       version: 1.0.0
