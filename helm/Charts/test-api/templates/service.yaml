@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: test-api-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - name: test-api-service
     port: 8080
