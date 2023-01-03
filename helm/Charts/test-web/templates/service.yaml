@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: test-web-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - name: test-web-service
     port: 80
