@@ -1,0 +1,27 @@
+apiVersion: v1
+data:
+  nginx-conf-cm.yml: |
+    events {
+        worker_connections 512;
+    }
+
+    http {
+        upstream app {
+            server test-api-service:8080;
+        }
+        server {
+            listen 80 default_server;
+
+            location / {
+                root    /usr/share/nginx/html;
+                index   index.html;
+            }
+
+            location /hey {
+                proxy_pass http://app/hey;
+            }
+        }
+    }
+kind: ConfigMap
+metadata:
+  name: nginx-conf-cm
