@@ -19,3 +19,11 @@ spec:
         resources:
         ports:
         - containerPort: 80
+        volumeMounts:
+        - mountPath: /etc/nginx/nginx.conf
+          name: nginx-conf
+          subPath: nginx.conf
+      volumes:
+      - configMap:
+          name: nginx-conf
+        name: nginx-conf
