@@ -20,6 +20,10 @@ data:
             location /hey {
                 proxy_pass http://app/hey;
             }
+
+            location /echo {
+                proxy_pass http://app/echo;
+            }
         }
     }
 kind: ConfigMap
