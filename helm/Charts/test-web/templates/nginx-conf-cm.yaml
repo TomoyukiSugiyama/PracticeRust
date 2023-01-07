@@ -25,3 +25,4 @@ data:
 kind: ConfigMap
 metadata:
   name: nginx-conf
+  namespace: practice-rust
