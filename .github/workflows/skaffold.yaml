@@ -6,13 +6,21 @@ on:
 
 jobs:
   skaffold:
-    name: "skaffold"
+    name: "install skaffold"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout sources
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - run: ls -la
-      - run: |
+      - name: Test
+        run: ls -la
+      - name: Install skaffold
+        run: |
           curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && \
           sudo install skaffold /usr/local/bin/
+      - name: Skaffold rendor
+        run: skaffold render > manifests/manifest.yaml
+      - name: Test
+        run: cat manifests/manifest.yaml
+    
