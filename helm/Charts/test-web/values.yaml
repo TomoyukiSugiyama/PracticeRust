@@ -1,3 +1,4 @@
 revision: latest
 replicas: 1
+namespace: practice-rust
 imagePullPolicy: IfNotPresent
