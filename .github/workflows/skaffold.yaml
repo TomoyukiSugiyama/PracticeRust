@@ -21,7 +21,6 @@ jobs:
           sudo install skaffold /usr/local/bin/
       - name: Skaffold rendor
         run: skaffold render --offline=true --loud=true --digest-source=none --output manifests/manifest.yaml
-        # run: skaffold render > manifests/manifest.yaml
-      # - name: Test
-      #   run: cat manifests/manifest.yaml
+      - name: Test
+        run: cat manifests/manifest.yaml
     
