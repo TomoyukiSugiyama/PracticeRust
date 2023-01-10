@@ -21,6 +21,11 @@ jobs:
           sudo install skaffold /usr/local/bin/
       - name: Skaffold rendor
         run: skaffold render --digest-source=none --output manifests/manifest.yaml
-      - name: Test
-        run: cat manifests/manifest.yaml
+      - name: push manifest
+        run: |
+          git add . && \
+          git commit -m "release" && \
+          git pull -r --autostash && \
+          git push
+
     
