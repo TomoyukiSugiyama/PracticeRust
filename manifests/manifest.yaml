@@ -1,0 +1,123 @@
+---
+# Source: test-api/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-api-service
+  namespace: practice-rust
+spec:
+  type: NodePort
+  ports:
+  - name: test-api-service
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
+  selector:
+    app: test-api
+---
+# Source: test-api/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-api
+  namespace: practice-rust
+spec:
+  selector:
+    matchLabels:
+      app: test-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: test-api
+    spec:
+      containers:
+      - name: test-api
+        image: test-api
+        imagePullPolicy: IfNotPresent
+        resources:
+        ports:
+        - containerPort: 8080
+---
+---
+# Source: test-web/templates/nginx-conf-cm.yaml
+apiVersion: v1
+data:
+  nginx.conf: |
+    events {
+        worker_connections 512;
+    }
+
+    http {
+        upstream app {
+            server test-api-service:8080;
+        }
+        server {
+            listen 80 default_server;
+
+            location / {
+                root    /usr/share/nginx/html;
+                index   index.html;
+            }
+
+            location /hey {
+                proxy_pass http://app/hey;
+            }
+
+            location /echo {
+                proxy_pass http://app/echo;
+            }
+        }
+    }
+kind: ConfigMap
+metadata:
+  name: nginx-conf
+  namespace: practice-rust
+---
+# Source: test-web/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-web-service
+  namespace: practice-rust
+spec:
+  type: NodePort
+  ports:
+  - name: test-web-service
+    port: 80
+    targetPort: 80
+    protocol: TCP
+  selector:
+    app: test-web
+---
+# Source: test-web/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-web
+  namespace: practice-rust
+spec:
+  selector:
+    matchLabels:
+      app: test-web
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: test-web
+    spec:
+      containers:
+      - name: test-web
+        image: test-web
+        imagePullPolicy: IfNotPresent
+        resources:
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /etc/nginx/nginx.conf
+          name: nginx-conf
+          subPath: nginx.conf
+      volumes:
+      - configMap:
+          name: nginx-conf
+        name: nginx-conf
