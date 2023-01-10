@@ -20,7 +20,7 @@ jobs:
           curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && \
           sudo install skaffold /usr/local/bin/
       - name: Skaffold rendor
-        run: skaffold render --offline=true --loud=true --output --digest-source=none manifests/manifest.yaml
+        run: skaffold render --offline=true --loud=true --digest-source=none --output manifests/manifest.yaml
         # run: skaffold render > manifests/manifest.yaml
       # - name: Test
       #   run: cat manifests/manifest.yaml
