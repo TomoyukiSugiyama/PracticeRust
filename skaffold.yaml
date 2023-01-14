@@ -3,9 +3,9 @@ kind: Config
 metadata:
   name: practicerust
 build:
-  # local:
-  #   useBuildkit: true
-  #   push: false
+  local:
+    useBuildkit: true
+    push: false
   artifacts:
     - image: test-api
       context: .
