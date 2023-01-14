@@ -5,13 +5,13 @@ metadata:
 build:
   local:
     useBuildkit: true
-    push: false
+    push: true
   artifacts:
-    - image: test-api
+    - image: iyamayuki/test-api
       context: .
       docker:
         dockerfile: app/Dockerfile
-    - image: test-web
+    - image: iyamayuki/test-web
       context: .
       docker:
         dockerfile: web/Dockerfile
@@ -24,11 +24,11 @@ deploy:
       - helm/Charts/test-api/values.yaml
       version: 1.0.0
       setValues: 
-        image: test-api
+        image: iyamayuki/test-api
     - name: test-web
       chartPath: helm/Charts/test-web
       valuesFiles:
       - helm/Charts/test-web/values.yaml
       version: 1.0.0
       setValues: 
-        image: test-web
+        image: iyamayuki/test-web
