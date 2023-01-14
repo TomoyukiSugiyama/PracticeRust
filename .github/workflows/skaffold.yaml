@@ -20,7 +20,7 @@ jobs:
           curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && \
           sudo install skaffold /usr/local/bin/
       - name: Skaffold rendor
-        run: skaffold render --output manifests/manifest.yaml -digest-source local
+        run: skaffold render --output manifests/manifest.yaml -digest-source=local
       - name: push manifest
         run: |
           git config --global user.name "${GITHUB_ACTOR}" && \
