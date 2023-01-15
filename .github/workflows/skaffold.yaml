@@ -21,18 +21,12 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Run Skaffold pipeline as action
-        uses: hiberbee/github-action-skaffold@1.19.0
-        with:
-          command: run
-          repository: ghcr.io/${{ github.repository }}          
-          # repository: ${{ secrets.DOCKER_USERNAME }}
-      # - name: Install skaffold
-      #   run: |
-      #     curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && \
-      #     sudo install skaffold /usr/local/bin/
-      # - name: Skaffold rendor
-      #   run: skaffold render --output manifests/manifest.yaml
+      - name: Install skaffold
+        run: |
+          curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && \
+          sudo install skaffold /usr/local/bin/
+      - name: Skaffold rendor
+        run: skaffold render --output manifests/manifest.yaml
       # - name: push manifest
       #   run: |
       #     git config --global user.name "${GITHUB_ACTOR}" && \
