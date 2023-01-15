@@ -34,7 +34,7 @@ jobs:
             fixed-${{ github.sha }}
             fixed-
       - name: Skaffold build
-        run: skaffold build
+        run: skaffold build --push
       - name: Skaffold rendor
         run: skaffold render --output manifests/manifest.yaml
       - name: push manifest
