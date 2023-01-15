@@ -24,7 +24,6 @@ jobs:
       - name: Run Skaffold pipeline as action
         uses: hiberbee/github-action-skaffold@1.19.0
         with:
-        with:
           command: run
           repository: ghcr.io/${{ github.repository }}          
           # repository: ${{ secrets.DOCKER_USERNAME }}
@@ -34,13 +33,13 @@ jobs:
       #     sudo install skaffold /usr/local/bin/
       # - name: Skaffold rendor
       #   run: skaffold render --output manifests/manifest.yaml
-      - name: push manifest
-        run: |
-          git config --global user.name "${GITHUB_ACTOR}" && \
-          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com" && \
-          git add manifests && \
-          git commit -m "release" && \
-          git pull -r --autostash && \
-          git push
+      # - name: push manifest
+      #   run: |
+      #     git config --global user.name "${GITHUB_ACTOR}" && \
+      #     git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com" && \
+      #     git add manifests && \
+      #     git commit -m "release" && \
+      #     git pull -r --autostash && \
+      #     git push
 
     
