@@ -24,7 +24,9 @@ jobs:
       - name: Run Skaffold pipeline as action
         uses: hiberbee/github-action-skaffold@1.19.0
         with:
-          command: render
+        with:
+          command: run
+          repository: ghcr.io/${{ github.repository }}          
           # repository: ${{ secrets.DOCKER_USERNAME }}
       # - name: Install skaffold
       #   run: |
