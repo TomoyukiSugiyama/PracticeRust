@@ -25,6 +25,14 @@ jobs:
         run: |
           curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && \
           sudo install skaffold /usr/local/bin/
+      - name: Cache skaffold image builds & config
+        uses: actions/cache@v2
+        with:
+          path: ~/.skaffold/
+          key: fixed-${{ github.sha }}
+          restore-keys: |
+            fixed-${{ github.sha }}
+            fixed-
       - name: Skaffold build
         run: skaffold build
       - name: Skaffold rendor
