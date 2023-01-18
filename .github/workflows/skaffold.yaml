@@ -3,6 +3,11 @@ name: sync-helmfile
 on:
   push:
     branches: [main]
+    paths:
+      - 'app/**'
+      - 'db/**'
+      - 'web/**'
+      - 'helm/Charts/**'
 
 jobs:
   skaffold:
