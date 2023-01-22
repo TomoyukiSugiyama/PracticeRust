@@ -18,6 +18,11 @@ build:
 deploy:
   helm:
     releases:
+    - name: napespace
+      chartPath: helm/Charts/namespaces
+      valuesFiles:
+      - helm/Charts/namespaces/values.yaml
+      version: 1.0.0
     - name: test-api
       chartPath: helm/Charts/test-api
       valuesFiles:
