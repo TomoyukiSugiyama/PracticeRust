@@ -14,6 +14,10 @@ jobs:
     name: "install skaffold"
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout sources
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: paths-filter
         uses: dorny/paths-filter@v2
         id: changes
@@ -24,10 +28,6 @@ jobs:
               - 'db/**'
               - 'web/**'
 
-      - name: Checkout sources
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - name: Setup Minikube
         uses: hiberbee/github-action-minikube@1.5.0
       - name: Login to Docker Hub
