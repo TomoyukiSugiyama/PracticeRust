@@ -2,5 +2,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: practice-rust
+  {{- if .Values.isIstioInjection }}
   labels:
     istio-injection: enabled
+  {{- end }}
