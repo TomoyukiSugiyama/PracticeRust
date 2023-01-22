@@ -14,6 +14,16 @@ jobs:
     name: "install skaffold"
     runs-on: ubuntu-latest
     steps:
+      - name: paths-filter
+        uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            build_and_push:
+              - 'app/**'
+              - 'db/**'
+              - 'web/**'
+
       - name: Checkout sources
         uses: actions/checkout@v3
         with:
@@ -38,7 +48,8 @@ jobs:
           restore-keys: |
             fixed-${{ github.sha }}
             fixed-
-      - name: Skaffold build
+      - if: steps.changes.outputs.build_and_push == 'true'
+        name: Skaffold build
         run: skaffold build --push
       - name: Skaffold rendor
         run: skaffold render --output manifests/manifest.yaml
