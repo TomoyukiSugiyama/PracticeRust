@@ -1,4 +1,11 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    istio-injection: enabled
+  name: practice-rust
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: test-api-service
@@ -29,7 +36,7 @@ spec:
         app: test-api
     spec:
       containers:
-      - image: iyamayuki/test-api:4cee455-dirty
+      - image: iyamayuki/test-api:71d9d27-dirty
         imagePullPolicy: IfNotPresent
         name: test-api
         ports:
@@ -100,7 +107,7 @@ spec:
         app: test-web
     spec:
       containers:
-      - image: iyamayuki/test-web:4cee455-dirty
+      - image: iyamayuki/test-web:71d9d27-dirty
         imagePullPolicy: IfNotPresent
         name: test-web
         ports:
