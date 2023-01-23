@@ -37,3 +37,8 @@ deploy:
       version: 1.0.0
       setValues: 
         image: iyamayuki/test-web
+    - name: networking
+      chartPath: helm/Charts/networking
+      valuesFiles:
+      - helm/Charts/networking/values.yaml
+      version: 1.0.0
