@@ -18,3 +18,9 @@ releases:
     version: 1.16.0
     values:
       - istio-values.yaml
+
+  - name: istio-ingress
+    namespace: practice-rust
+    createNamespace: true
+    chart: istio/gateway
+    version: 1.16.0
