@@ -19,7 +19,7 @@ releases:
     values:
       - istio-values.yaml
 
-  - name: istio-ingress
+  - name: gateway
     namespace: practice-rust
     createNamespace: true
     chart: istio/gateway
