@@ -20,7 +20,7 @@ releases:
       - istio-values.yaml
 
   - name: istio-ingressgateway
-    namespace: practice-rust
+    namespace: istio-system
     createNamespace: true
     chart: istio/gateway
     version: 1.16.0
