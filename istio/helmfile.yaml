@@ -19,8 +19,8 @@ releases:
     values:
       - istio-values.yaml
 
-  - name: istio-ingressgateway
-    namespace: istio-system
-    createNamespace: true
-    chart: istio/gateway
-    version: 1.16.0
+  # - name: istio-ingressgateway
+  #   namespace: istio-ingress
+  #   createNamespace: true
+  #   chart: istio/gateway
+  #   version: 1.16.0
