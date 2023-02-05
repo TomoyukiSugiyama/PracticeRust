@@ -16,6 +16,6 @@ spec:
         exact: /hey
     route:
     - destination:
-        host: test-web
+        host: test-web-service
         port:
           number: 80
