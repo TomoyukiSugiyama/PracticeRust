@@ -4,7 +4,6 @@ metadata:
   name: test-web-service
   namespace: {{ .Values.namespace }}
 spec:
-  type: NodePort
   ports:
   - name: test-web-service
     port: 80

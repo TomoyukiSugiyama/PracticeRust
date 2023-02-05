@@ -4,7 +4,6 @@ metadata:
   name: test-api-service
   namespace: {{ .Values.namespace }}
 spec:
-  type: NodePort
   ports:
   - name: test-api-service
     port: 8080
