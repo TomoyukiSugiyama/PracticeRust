@@ -35,7 +35,7 @@ spec:
         app: test-api
     spec:
       containers:
-      - image: iyamayuki/test-api:3c69e49-dirty
+      - image: iyamayuki/test-api:8c57fab-dirty
         imagePullPolicy: IfNotPresent
         name: test-api
         ports:
@@ -105,7 +105,7 @@ spec:
         app: test-web
     spec:
       containers:
-      - image: iyamayuki/test-web:3c69e49-dirty
+      - image: iyamayuki/test-web:8c57fab-dirty
         imagePullPolicy: IfNotPresent
         name: test-web
         ports:
@@ -154,6 +154,6 @@ spec:
         exact: /hey
     route:
     - destination:
-        host: test-web
+        host: test-web-service
         port:
           number: 80
