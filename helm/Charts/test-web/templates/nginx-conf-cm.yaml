@@ -28,5 +28,5 @@ data:
     }
 kind: ConfigMap
 metadata:
-  name: nginx-conf
+  name: nginx-conf-{{ .Values.color }}
   namespace: {{ .Values.namespace }}

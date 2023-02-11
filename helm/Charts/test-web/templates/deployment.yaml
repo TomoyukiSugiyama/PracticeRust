@@ -30,5 +30,5 @@ spec:
           subPath: nginx.conf
       volumes:
       - configMap:
-          name: nginx-conf
+          name: nginx-conf-{{ .Values.color }}
         name: nginx-conf
