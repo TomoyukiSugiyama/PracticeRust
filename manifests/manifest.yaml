@@ -37,7 +37,7 @@ spec:
         app: test-api
     spec:
       containers:
-      - image: iyamayuki/test-api:1295a67-dirty
+      - image: iyamayuki/test-api:6b742da-dirty
         imagePullPolicy: IfNotPresent
         name: test-api
         ports:
@@ -74,7 +74,7 @@ data:
     }
 kind: ConfigMap
 metadata:
-  name: nginx-conf
+  name: nginx-conf-blue
   namespace: practice-rust
 ---
 apiVersion: apps/v1
@@ -97,7 +97,7 @@ spec:
         version: blue
     spec:
       containers:
-      - image: iyamayuki/test-web:1295a67-dirty
+      - image: iyamayuki/test-web:6b742da-dirty
         imagePullPolicy: IfNotPresent
         name: test-web
         ports:
@@ -109,7 +109,75 @@ spec:
           subPath: nginx.conf
       volumes:
       - configMap:
+          name: nginx-conf-blue
+        name: nginx-conf
+---
+apiVersion: v1
+data:
+  nginx.conf: |
+    events {
+        worker_connections 512;
+    }
+
+    http {
+        upstream app {
+            server test-api-service:8080;
+        }
+        server {
+            listen 80 default_server;
+
+            location / {
+                root    /usr/share/nginx/html;
+                index   index.html;
+            }
+
+            location /hey {
+                proxy_pass http://app/hey;
+            }
+
+            location /echo {
+                proxy_pass http://app/echo;
+            }
+        }
+    }
+kind: ConfigMap
+metadata:
+  name: nginx-conf-green
+  namespace: practice-rust
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: test-web
+    version: green
+  name: test-web-green
+  namespace: practice-rust
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-web
+  template:
+    metadata:
+      labels:
+        app: test-web
+        version: green
+    spec:
+      containers:
+      - image: iyamayuki/test-web:6b742da-dirty
+        imagePullPolicy: IfNotPresent
+        name: test-web
+        ports:
+        - containerPort: 80
+        resources: null
+        volumeMounts:
+        - mountPath: /etc/nginx/nginx.conf
           name: nginx-conf
+          subPath: nginx.conf
+      volumes:
+      - configMap:
+          name: nginx-conf-green
         name: nginx-conf
 ---
 apiVersion: v1
