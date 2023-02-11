@@ -37,7 +37,7 @@ spec:
         app: test-api
     spec:
       containers:
-      - image: iyamayuki/test-api:47e151c-dirty
+      - image: iyamayuki/test-api:1295a67-dirty
         imagePullPolicy: IfNotPresent
         name: test-api
         ports:
@@ -77,20 +77,6 @@ metadata:
   name: nginx-conf
   namespace: practice-rust
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: test-web-service
-  namespace: practice-rust
-spec:
-  ports:
-  - name: test-web-service
-    port: 80
-    protocol: TCP
-    targetPort: 80
-  selector:
-    app: test-web
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -111,7 +97,7 @@ spec:
         version: blue
     spec:
       containers:
-      - image: iyamayuki/test-web:47e151c-dirty
+      - image: iyamayuki/test-web:1295a67-dirty
         imagePullPolicy: IfNotPresent
         name: test-web
         ports:
@@ -125,6 +111,20 @@ spec:
       - configMap:
           name: nginx-conf
         name: nginx-conf
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-web-service
+  namespace: practice-rust
+spec:
+  ports:
+  - name: test-web-service
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: test-web
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
