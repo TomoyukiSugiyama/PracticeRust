@@ -1,12 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-web
+  # labels:
+  #   app: test-web
+  #   version: {{ .Values.color }} 
+  name: test-web-{{ .Values.color }}
   namespace: {{ .Values.namespace }}
 spec:
   selector:
     matchLabels:
       app: test-web
+      # version: {{ .Values.color }}
   replicas: {{ .Values.replicas }}
   template:
     metadata:

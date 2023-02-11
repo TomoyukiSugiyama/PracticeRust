@@ -11,11 +11,10 @@ spec:
   http:
   - match:
     - uri:
-        exact: /
-    - uri:
-        exact: /hey
+        prefix: /
     route:
     - destination:
         host: test-web-service
+        subset: {{ .Values.liveColor }}
         port:
           number: 80

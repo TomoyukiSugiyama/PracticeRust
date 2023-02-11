@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: test-api
   name: test-api
   namespace: {{ .Values.namespace }}
 spec:
