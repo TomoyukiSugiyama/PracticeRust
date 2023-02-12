@@ -46,8 +46,8 @@ deploy:
       setValues: 
         image: iyamayuki/test-web
         color: green
-    - name: networking
-      chartPath: helm/Charts/networking
+    - name: test web networking
+      chartPath: helm/Charts//test-web/networking
       valuesFiles:
-      - helm/Charts/networking/values.yaml
+      - helm/Charts/test-web/networking/values.yaml
       version: 1.0.0
