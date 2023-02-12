@@ -31,17 +31,17 @@ deploy:
       setValues: 
         image: iyamayuki/test-api
     - name: test-web-blue
-      chartPath: helm/Charts/test-web
+      chartPath: helm/Charts/test-web/app
       valuesFiles:
-      - helm/Charts/test-web/values.yaml
+      - helm/Charts/test-web/app/values.yaml
       version: 1.0.0
       setValues: 
         image: iyamayuki/test-web
         color: blue
     - name: test-web-green
-      chartPath: helm/Charts/test-web
+      chartPath: helm/Charts/test-web/app
       valuesFiles:
-      - helm/Charts/test-web/values.yaml
+      - helm/Charts/test-web/app/values.yaml
       version: 1.0.0
       setValues: 
         image: iyamayuki/test-web
