@@ -24,9 +24,9 @@ deploy:
       - helm/Charts/namespaces/values.yaml
       version: 1.0.0
     - name: test-api
-      chartPath: helm/Charts/test-api
+      chartPath: helm/Charts/test-api/app
       valuesFiles:
-      - helm/Charts/test-api/values.yaml
+      - helm/Charts/test-api/app/values.yaml
       version: 1.0.0
       setValues: 
         image: iyamayuki/test-api
@@ -46,7 +46,7 @@ deploy:
       setValues: 
         image: iyamayuki/test-web
         color: green
-    - name: test web networking
+    - name: test-web-networking
       chartPath: helm/Charts//test-web/networking
       valuesFiles:
       - helm/Charts/test-web/networking/values.yaml
