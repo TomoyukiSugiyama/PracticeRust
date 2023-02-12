@@ -37,7 +37,7 @@ spec:
         app: test-api
     spec:
       containers:
-      - image: iyamayuki/test-api:41c2d82-dirty
+      - image: iyamayuki/test-api:5e68d48-dirty
         imagePullPolicy: IfNotPresent
         name: test-api
         ports:
@@ -97,7 +97,7 @@ spec:
         version: blue
     spec:
       containers:
-      - image: iyamayuki/test-web:41c2d82-dirty
+      - image: iyamayuki/test-web:5e68d48-dirty
         imagePullPolicy: IfNotPresent
         name: test-web
         ports:
@@ -165,7 +165,7 @@ spec:
         version: green
     spec:
       containers:
-      - image: iyamayuki/test-web:41c2d82-dirty
+      - image: iyamayuki/test-web:5e68d48-dirty
         imagePullPolicy: IfNotPresent
         name: test-web
         ports:
