@@ -5,20 +5,6 @@ metadata:
     istio-injection: enabled
   name: practice-rust
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: test-api-service
-  namespace: practice-rust
-spec:
-  ports:
-  - name: test-api-service
-    port: 8080
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    app: test-api
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -37,12 +23,26 @@ spec:
         app: test-api
     spec:
       containers:
-      - image: iyamayuki/test-api:f4528cc-dirty
+      - image: iyamayuki/test-api:2b8847d-dirty
         imagePullPolicy: IfNotPresent
         name: test-api
         ports:
         - containerPort: 8080
         resources: null
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-api-service
+  namespace: practice-rust
+spec:
+  ports:
+  - name: test-api-service
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: test-api
 ---
 apiVersion: v1
 data:
@@ -97,7 +97,7 @@ spec:
         version: blue
     spec:
       containers:
-      - image: iyamayuki/test-web:f4528cc-dirty
+      - image: iyamayuki/test-web:2b8847d-dirty
         imagePullPolicy: IfNotPresent
         name: test-web
         ports:
@@ -165,7 +165,7 @@ spec:
         version: green
     spec:
       containers:
-      - image: iyamayuki/test-web:f4528cc-dirty
+      - image: iyamayuki/test-web:2b8847d-dirty
         imagePullPolicy: IfNotPresent
         name: test-web
         ports:
