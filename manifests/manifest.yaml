@@ -23,7 +23,7 @@ spec:
         app: test-api
     spec:
       containers:
-      - image: iyamayuki/test-api:2b8847d-dirty
+      - image: iyamayuki/test-api:b67cdc6-dirty
         imagePullPolicy: IfNotPresent
         name: test-api
         ports:
@@ -43,6 +43,45 @@ spec:
     targetPort: 8080
   selector:
     app: test-api
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: test-api-service
+  namespace: practice-rust
+spec:
+  host: test-api-service
+  subsets:
+  - labels:
+      version: blue
+    name: blue
+  - labels:
+      version: green
+    name: green
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: test-api-virtual-service
+  namespace: practice-rust
+spec:
+  gateways:
+  - mesh
+  hosts:
+  - '*'
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: test-api-service
+        port:
+          number: 8080
+        subset: blue
 ---
 apiVersion: v1
 data:
@@ -97,7 +136,7 @@ spec:
         version: blue
     spec:
       containers:
-      - image: iyamayuki/test-web:2b8847d-dirty
+      - image: iyamayuki/test-web:b67cdc6-dirty
         imagePullPolicy: IfNotPresent
         name: test-web
         ports:
@@ -165,7 +204,7 @@ spec:
         version: green
     spec:
       containers:
-      - image: iyamayuki/test-web:2b8847d-dirty
+      - image: iyamayuki/test-web:b67cdc6-dirty
         imagePullPolicy: IfNotPresent
         name: test-web
         ports:
