@@ -11,7 +11,7 @@ metadata:
   labels:
     app: test-api
     version: blue
-  name: test-api
+  name: test-api-blue
   namespace: practice-rust
 spec:
   replicas: 1
@@ -25,7 +25,34 @@ spec:
         version: blue
     spec:
       containers:
-      - image: iyamayuki/test-api:08f9cea-dirty
+      - image: iyamayuki/test-api:1daaf86-dirty
+        imagePullPolicy: IfNotPresent
+        name: test-api
+        ports:
+        - containerPort: 8080
+        resources: null
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: test-api
+    version: green
+  name: test-api-green
+  namespace: practice-rust
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-api
+  template:
+    metadata:
+      labels:
+        app: test-api
+        version: green
+    spec:
+      containers:
+      - image: iyamayuki/test-api:1daaf86-dirty
         imagePullPolicy: IfNotPresent
         name: test-api
         ports:
@@ -138,7 +165,7 @@ spec:
         version: blue
     spec:
       containers:
-      - image: iyamayuki/test-web:08f9cea-dirty
+      - image: iyamayuki/test-web:1daaf86-dirty
         imagePullPolicy: IfNotPresent
         name: test-web
         ports:
@@ -206,7 +233,7 @@ spec:
         version: green
     spec:
       containers:
-      - image: iyamayuki/test-web:08f9cea-dirty
+      - image: iyamayuki/test-web:1daaf86-dirty
         imagePullPolicy: IfNotPresent
         name: test-web
         ports:
