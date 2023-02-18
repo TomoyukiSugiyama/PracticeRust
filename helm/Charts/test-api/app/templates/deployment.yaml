@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: test-api
+    version: {{ .Values.color }} 
   name: test-api
   namespace: {{ .Values.namespace }}
 spec:
@@ -14,6 +15,7 @@ spec:
     metadata:
       labels:
         app: test-api
+        version: {{ .Values.color }} 
     spec:
       containers:
       - name: test-api
