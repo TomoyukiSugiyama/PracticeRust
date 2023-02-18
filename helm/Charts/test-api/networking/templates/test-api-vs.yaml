@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   hosts:
-  - "*"
+  - "test-api"
   gateways:
   - mesh
   http:
