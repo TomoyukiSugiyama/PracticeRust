@@ -23,13 +23,22 @@ deploy:
       valuesFiles:
       - helm/Charts/namespaces/values.yaml
       version: 1.0.0
-    - name: test-api
+    - name: test-api-blue
       chartPath: helm/Charts/test-api/app
       valuesFiles:
       - helm/Charts/test-api/app/values.yaml
       version: 1.0.0
       setValues: 
         image: iyamayuki/test-api
+        color: blue
+    - name: test-api-green
+      chartPath: helm/Charts/test-api/app
+      valuesFiles:
+      - helm/Charts/test-api/app/values.yaml
+      version: 1.0.0
+      setValues: 
+        image: iyamayuki/test-api
+        color: green
     - name: test-api-networking
       chartPath: helm/Charts/test-api/networking
       valuesFiles:

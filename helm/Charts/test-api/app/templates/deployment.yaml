@@ -4,7 +4,7 @@ metadata:
   labels:
     app: test-api
     version: {{ .Values.color }} 
-  name: test-api
+  name: test-api-{{ .Values.color }}
   namespace: {{ .Values.namespace }}
 spec:
   selector:
