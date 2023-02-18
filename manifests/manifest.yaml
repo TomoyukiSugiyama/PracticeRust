@@ -10,6 +10,7 @@ kind: Deployment
 metadata:
   labels:
     app: test-api
+    version: blue
   name: test-api
   namespace: practice-rust
 spec:
@@ -21,9 +22,10 @@ spec:
     metadata:
       labels:
         app: test-api
+        version: blue
     spec:
       containers:
-      - image: iyamayuki/test-api:b67cdc6-dirty
+      - image: iyamayuki/test-api:08f9cea-dirty
         imagePullPolicy: IfNotPresent
         name: test-api
         ports:
@@ -71,7 +73,7 @@ spec:
   gateways:
   - mesh
   hosts:
-  - '*'
+  - test-api
   http:
   - match:
     - uri:
@@ -136,7 +138,7 @@ spec:
         version: blue
     spec:
       containers:
-      - image: iyamayuki/test-web:b67cdc6-dirty
+      - image: iyamayuki/test-web:08f9cea-dirty
         imagePullPolicy: IfNotPresent
         name: test-web
         ports:
@@ -204,7 +206,7 @@ spec:
         version: green
     spec:
       containers:
-      - image: iyamayuki/test-web:b67cdc6-dirty
+      - image: iyamayuki/test-web:08f9cea-dirty
         imagePullPolicy: IfNotPresent
         name: test-web
         ports:
