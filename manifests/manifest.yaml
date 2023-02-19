@@ -25,7 +25,7 @@ spec:
         version: blue
     spec:
       containers:
-      - image: iyamayuki/test-api:1daaf86-dirty
+      - image: iyamayuki/test-api:bb27206-dirty
         imagePullPolicy: IfNotPresent
         name: test-api
         ports:
@@ -52,7 +52,7 @@ spec:
         version: green
     spec:
       containers:
-      - image: iyamayuki/test-api:1daaf86-dirty
+      - image: iyamayuki/test-api:bb27206-dirty
         imagePullPolicy: IfNotPresent
         name: test-api
         ports:
@@ -165,7 +165,7 @@ spec:
         version: blue
     spec:
       containers:
-      - image: iyamayuki/test-web:1daaf86-dirty
+      - image: iyamayuki/test-web:bb27206-dirty
         imagePullPolicy: IfNotPresent
         name: test-web
         ports:
@@ -233,7 +233,7 @@ spec:
         version: green
     spec:
       containers:
-      - image: iyamayuki/test-web:1daaf86-dirty
+      - image: iyamayuki/test-web:bb27206-dirty
         imagePullPolicy: IfNotPresent
         name: test-web
         ports:
