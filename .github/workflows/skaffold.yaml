@@ -27,6 +27,7 @@ jobs:
               - 'app/**'
               - 'db/**'
               - 'web/**'
+              - 'helm/Chard/**'
 
       - name: Setup Minikube
         uses: hiberbee/github-action-minikube@1.5.0
