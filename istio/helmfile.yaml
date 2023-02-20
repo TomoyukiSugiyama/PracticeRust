@@ -7,7 +7,7 @@ releases:
     namespace: istio-system
     createNamespace: true
     chart: istio/base
-    version: 1.16.0
+    version: 1.17.0
     values:
       - istio-values.yaml
 
@@ -15,7 +15,7 @@ releases:
     namespace: istio-system
     createNamespace: true
     chart: istio/istiod
-    version: 1.16.0
+    version: 1.17.0
     values:
       - istio-values.yaml
 
@@ -23,4 +23,4 @@ releases:
     namespace: istio-system
     createNamespace: true
     chart: istio/gateway
-    version: 1.16.0
+    version: 1.17.0
